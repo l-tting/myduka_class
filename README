@@ -1,0 +1,97 @@
+JS - WAS DESIGNED TO WORK IN THE BROWSER CREATING INTERACTIVE UIs AND REACTIVITY
+NODE JS - RUNS ON CHROME'S V8 ENGINE - RUNS ON A SERVER OUTSIDE THE BROWSER
+
+SERVER SIDE LANGUAGE - PYTHON, C++ , JAVA , GO , C , NODE JS
+CLIENT SIDE LANGUAGE - HTML, CSS , JS
+
+
+UI -> SERVER -> DB
+
+SERVER - LOGIC - DATA PROCESSING -> CORRECT DATA TYPES
+                        ->  DATA ORG.
+                        -> 
+
+MPESA
+
+PSYCOPG2 -POSTGRESQL DATABASE ADAPTER -> CONNECT OUR PYTHON SERVER TO A DB ENVIRONMENT
+CLIENT - SERVER MODEL 
+CLIENT - USUALLY A BROWSER THAT SENDS A REQUEST FOR DATA OR WEB PAGES
+SERVER - COMPUTER THAT RECEIVES REQUESTS FROM A CLIENT, PROCESSES IT AND SENDS A RESPONSE
+
+WHAT HAPPENS WHEN YOU TYPE A URL?
+www.netflix.com
+1.dns lookup - translating domain names to IP addresses
+2.client sends a request
+3.server receives request
+4.response
+
+ip address - unique number assigned to each device on a network e.g 192.168.1.1
+
+html/css/js ---------- python ------------ sql
+
+database.py -> db file -> execute db operations
+main.py -> flask -> server file -> data processing / logic
+
+Psycopg2
+create a new database 
+create the tables -> products, sales, stock , users
+
+create database db_name;
+create database myduka_app;
+
+
+insert into products(name,buying_price,selling_price)values('bread',50,60);
+myduka2=# select * from products;
+ id | name  | buying_price | selling_price 
+----+-------+--------------+---------------
+  1 | bread |        50.00 |         60.00
+(1 row)
+
+
+PSYCOPG2
+-Goal -> write and execute sql queries in python
+-perform CRUD operations on data in Python rather than an SQL env. 
+C -> CREATE -> INSERT
+R -> READ -> SELECT 
+U -UPDATE -> UPDATE 
+D -DELETE -> DELETE
+
+PSYCOPG2 - a PostgreSQL database adapter for Python. Driver that connects your Python
+code to a db
+
+establishing  connection to the db 
+psycopg2.connect()
+1.user -> postgres -> postgres user
+2.password -> password attached to that postgres user
+3.host -> where is your db located? -> localhost (your pc)
+            --localhost -> ip address of your device -> 127.0.0.1 
+4.port -> where exactly on my device is the PostgreSQL service running?
+5.database -> db you want to connect to e.g myduka_app
+
+cur -> object to perform db operations
+
+Take note of data structure format - what is the data stored in?
+
+[(1, 'bread', Decimal('50.00'), Decimal('60.00'))] -> 
+list of one tuple -> for one product
+list of tuples -> multiple products
+
+[(1, 'bread', Decimal('50.00'), Decimal('60.00')), (2, 'milk', Decimal('40.00'), Decimal('60.00')), (3, 'milk', Decimal('40.00'), Decimal('60.00')), (4, 'milk', Decimal('40.00'), Decimal('60.00')), (5, 'milk', Decimal('40.00'), Decimal('60.00'))]
+
+Functions -> block of reusable code -> used with return keyword
+
+1. Reusability
+2. Organization -readability
+3. Easy debugging
+4. Modularity -> breaks code into smaller reusable chunks
+
+            variable scopes
+local variable -> accessible in its defined block
+global variable -> accessible in the entire program
+
+TASK 
+1. insert one sale using sql shell / psql in your sales table
+2. fetch that sale using psycopg2 and print it in your terminal -> use a fetch_sale()
+        ->take note of data format
+3.insert another 3 sales using psycopg2 and use fetch sales function to see your inserted data
+ -> for 2 & 3 -> use functions
