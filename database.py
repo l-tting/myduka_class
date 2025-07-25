@@ -11,15 +11,42 @@ def fetch_products():
     products = cur.fetchall()
     return products
 
-products = fetch_products()
+
+def fetch_sales():
+    cur.execute("select * from  sales")
+    sales = cur.fetchall()
+    return sales
 
 
-def insert_products():
-    cur.execute("insert into products(name,buying_price,selling_price)values('eggs',15,20)")
+def get_data(table):
+    cur.execute(f"select * from {table}")
+    data = cur.fetchall()
+    return data
+
+
+def insert_products(product_values):
+    query= f"insert into products(name,buying_price,selling_price)values{product_values}"
+    cur.execute(query)
     conn.commit()
- 
-insert_products()
 
-print(products)
+
+def insert_sales(sales_details):
+    query = f"insert into sales(pid,quantity)values{sales_details}"
+    cur.execute(query)
+    conn.commit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

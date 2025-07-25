@@ -51,7 +51,7 @@ myduka2=# select * from products;
 PSYCOPG2
 -Goal -> write and execute sql queries in python
 -perform CRUD operations on data in Python rather than an SQL env. 
-C -> CREATE -> INSERT
+C ->CREATE -> INSERT
 R -> READ -> SELECT 
 U -UPDATE -> UPDATE 
 D -DELETE -> DELETE
@@ -80,7 +80,7 @@ list of tuples -> multiple products
 
 Functions -> block of reusable code -> used with return keyword
 
-1. Reusability
+1. Reusability - parameters
 2. Organization -readability
 3. Easy debugging
 4. Modularity -> breaks code into smaller reusable chunks
@@ -95,3 +95,167 @@ TASK
         ->take note of data format
 3.insert another 3 sales using psycopg2 and use fetch sales function to see your inserted data
  -> for 2 & 3 -> use functions
+
+
+ html/css/js <--------> python <-----------> sql
+constraints -> Unique 
+    "insert into products(name,buying_price,selling_price)values('eggs',15,20)"
+
+parameter -> placeholder / temporary value passed when defining  function
+arguments (args) -> actual values passed when calling the function
+
+1. a function that gets data from any table
+2. insert products with parameters
+3. insert sales with parameters
+
+
+insert into products(name,buying_price,selling_price)values(values)
+
+FLASK
+Is a Python framework used to build web applications 
+
+Framework && Library
+
+
+Framework is pre-built code that gives you a starting point to build applications faster
+and easily -  comes with ready made tools and features so that you dont have to build everything
+from scratch
+Library - pre-wriiten that you can use to solve specific problems or add features to your program
+
+Analogy -> Building a House
+Scenrio 1
+You could build a house yourself with no help at all using tools you want and how you want to use 
+them -> flexibility -> no restrictions  -> LIBRARY
+e.g 
+Numpy ,Matplotlib, Pandas, tensorflow (ML) ,Scikit-Learn(ML)
+
+Scenario 2
+You enlist the help of building professionals who dictate how to build the house and in what
+time frame including what tools should be used - You follow restrictions, guidelines as pointed
+out by these professionals  -> FRAMEWORK -> follows strict framework guidelines
+e.g Python -> Flask ,FastAPI,Django
+    JS -> React, Vue, Angular, Svelte
+    C#  -> .NET
+    Java - Spring
+    NODEJS -> Express
+
+
+Routing Feature
+Routing : mechanism to map URLS to Python functions - system for resource navigtion 
+Routing connects a URL to a function in your flask app
+
+Home -----> (functions) ------>About Us
+/                              /about_us
+
+https://techcamp.co.ke   -- Home
+https://techcamp.co.ke/about_us   -- About Us
+https://techcamp.co.ke/certifications - Certification Trainings
+URL _> full address used to access resources online
+Route -> part of the URL that determines what function to execute when a 
+specific url is called
+
+-> In Flask routes are defined using a decorator function -> @app.route() -> @
+Decorator is a function that determines the behaviour of another function
+
+View function -> the actual function executing to provide resources
+
+www.google.com -> 198.168.0.1
+
+127.0.0.1 -> localhost -> your local device
+http://127.0.0.1:5000
+5000 -> port -> where exactly on localhost is this flask server running
+
+http://127.0.0.1:5000/
+http://127.0.0.1:5000/
+https://www.safaricom.co.ke/mpesa
+
+A    =-------=    B
+
+How Routing Works
+1. User enters a URL and Flask matches the URL to a registered route
+2. If route is found -> view function executes and data is returned
+3. If not found -> returns 404 
+
+
+->static 
+  -> represents all static files -> css,js,images,videos,favicons
+->templates
+  -> defines where to put all html files
+  -> a single html file is called a template
+-database.py 
+-main.py 
+
+
+N/B ---- cant have 2 view functions with same name
+
+
+-index.html
+-products.html
+-sales.html
+-stock.html
+-dashboard.html
+
+
+Get data from db
+      |
+Get to Flask
+       |
+Display data in html (tables)
+
+
+Returning A HTML FILE
+1.place the file inside templates folder
+2.import a function from Flask responsible for returning html files
+3.pass the name of the html file as an argument to this function
+
+
+JINJA
+- a templating engine integrated with flask to render dynamic html pages
+- we can use Jinja to pass Python data and logic in html  
+1.Jinja with data
+---> {{ }} -> variables
+---> {% %} -logic -> control structures
+1. initialize logic
+2. logic definition
+3. terminate logic
+
+
+Control Structures
+1.Sequence - execute a program top to bottom left to right
+2.Iteration - looping e.g for loops, while , do while
+3.Selection - conditional statements -if -> decision makers
+ e.g
+
+
+
+
+
+
+Meanwhile get a navbar from bootstrap ---have the following in the navbar
+ Home ---- Products ----Sales ---- Stock --- Dashboard
+
+
+ 1.Create a parent template that houses all common elements 
+ e.g navbar, footer
+ 2. Have all the other pages inherit from the parent template
+
+Define content inside blocks
+
+
+
+html
+    {% block title %} {% endblock %}
+  body
+
+    div
+        div Navbar div
+
+        {% block content %} {% endblock %}
+
+
+        div Footer div
+    div
+  body
+html
+
+    
