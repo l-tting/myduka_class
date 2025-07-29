@@ -272,8 +272,8 @@ Posting - sending data to a server e.g login , sending money etc
 
 Process
 1.Provide the user with a form to fill some data - Bootstrap
-2. User fills form and submits data
-3. Form is submitted to a route in Flask 
+2.User fills form and submits data
+3.Form is submitted to a route in Flask 
 4.If route is found data is processed and posted to the db using functions
 5.Data is viewed - redirect a user back to the products page
 
@@ -307,12 +307,32 @@ Extracting data from a form
 1.methods
 2.use request object from flask to extract form data using the key(name attribute)
   request.form -> extract data from a form using a key
-  request.method - tells a server what method is being used
+  request.method -> tells a server what method is being used
 
 redirect(url_for()) -> where to take a user after a specific action
   -is a function
   -pass as argument the name of the view function where you want to take them
 
 
-Status Codes
+Status Codes  - a way for theserver to communicate with an application
+1 -> Informational
+2-> succesful responses
+3-> redirection
+4 -> client error
+5 -> server error
 
+
+
+POSTING / MAKING SALES
+id | pid | quantity |         created_at         
+----+-----+----------+----------------------------
+  1 |   1 |       12 | 2025-07-22 15:03:12.084641
+
+Insert into sales(pid,quantity)values()
+
+
+{{}} - variables
+{% %} - control structures
+
+Implement full add stock functionality using a form
+Hint -> Posting stock is exactly the same as posting sales
