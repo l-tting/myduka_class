@@ -29,6 +29,12 @@ def insert_products(product_values):
     cur.execute(query)
     conn.commit()
 
+product_details = ("flour",100,200)
+insert_products(product_details)
+
+
+
+
 
 def insert_sales(sales_details):
     query = f"insert into sales(pid,quantity)values{sales_details}"

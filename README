@@ -258,4 +258,61 @@ html
   body
 html
 
-    
+    TASK:
+Display sales data in a sales table within sales page -> use template inheritance to provide 
+navbar and footer to the sales page from base
+
+Psycopg2
+Routing - decorator func, view func , route/path
+Displayed data with Flask
+Template Inheritance
+
+POSTING DATA WITH FLASK
+Posting - sending data to a server e.g login , sending money etc
+
+Process
+1.Provide the user with a form to fill some data - Bootstrap
+2. User fills form and submits data
+3. Form is submitted to a route in Flask 
+4.If route is found data is processed and posted to the db using functions
+5.Data is viewed - redirect a user back to the products page
+
+
+
+Form Checklist
+-> method attribute  - in the opening form tag
+-> action attribute - in the opening form tag
+-> name attribute - key used by the server to access values from data
+-> input type
+-> button type submit
+
+
+method -> telling a server what to do with data 
+    types of methods: ->
+    GET - fetching or getting data from a server e.g fetching products
+    POST - sending data to a server e.g adding products,making sales
+    PUT - Updating existing data e.g updating selling price
+    DELETE - getting rid of data 
+
+action -> where do you want data from the form to be processed -> route
+
+
+N/B 
+Get - list of tuples
+Post - from the form ,data comes in form of key-value pairs x:y e.g 
+    'product':'eggs'
+
+
+Extracting data from a form
+1.methods
+2.use request object from flask to extract form data using the key(name attribute)
+  request.form -> extract data from a form using a key
+  request.method - tells a server what method is being used
+
+redirect(url_for()) -> where to take a user after a specific action
+  -is a function
+  -pass as argument the name of the view function where you want to take them
+
+
+Status Codes
+
