@@ -42,6 +42,17 @@ new_sale = ("1",200)
 insert_sales(new_sale)
 
 
+def available_stock(pid):
+    cur.execute("select sum(stock_quantity) from stock where pid = %s",(pid,))
+    total_stock = cur.fetchone()[0] or 0
+
+    cur.execute("select sum(quantity) from sales where pid = %s",(pid,))
+    total_sales = cur.fetchone()[0] or 0
+    return total_stock - total_sales
+
+check_stock = available_stock(2)
+print(check_stock)
+
 
 
 

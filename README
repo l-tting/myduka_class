@@ -278,7 +278,6 @@ Process
 5.Data is viewed - redirect a user back to the products page
 
 
-
 Form Checklist
 -> method attribute  - in the opening form tag
 -> action attribute - in the opening form tag
@@ -309,6 +308,7 @@ Extracting data from a form
   request.form -> extract data from a form using a key
   request.method -> tells a server what method is being used
 
+
 redirect(url_for()) -> where to take a user after a specific action
   -is a function
   -pass as argument the name of the view function where you want to take them
@@ -322,11 +322,11 @@ Status Codes  - a way for theserver to communicate with an application
 5 -> server error
 
 
-
 POSTING / MAKING SALES
 id | pid | quantity |         created_at         
 ----+-----+----------+----------------------------
   1 |   1 |       12 | 2025-07-22 15:03:12.084641
+
 
 Insert into sales(pid,quantity)values()
 
@@ -336,3 +336,46 @@ Insert into sales(pid,quantity)values()
 
 Implement full add stock functionality using a form
 Hint -> Posting stock is exactly the same as posting sales
+
+
+eggs - 100
+
+50
+100 - 50 = 50
+#stock
+1 eggs 100 created_at
+1 eggs 100 created_at
+1 eggs 300 created_at
+
+
+400 eggs
+
+
+#sales
+1 eggs 40 created_at
+1 eggs 50 created_at
+1 eggs 60 created_at
+
+150 eggs
+
+400 -150 = 250 eggs
+Flash Messaging - used to send one time notifications froom the server to the client
+to notify a user about the result of an action
+e.g action - adding a product
+    notification - Product Added succesfully
+                  - Could not add product
+                
+-Implemented using flash()
+-Messages / notifications are usually stored in a session cookie
+-secret-key
+
+Message Categories
+1.success - green
+2.error/danger -red
+3.info - blue
+4.warning - yellow
+
+
+Task - 1.Have the make sale and add stock forms inside a modal
+      2.Add flashing for stock and sales route
+
