@@ -50,8 +50,44 @@ def available_stock(pid):
     total_sales = cur.fetchone()[0] or 0
     return total_stock - total_sales
 
-check_stock = available_stock(2)
-print(check_stock)
+
+
+def sales_per_product():
+    cur.execute("""
+        select products.name ,sum(products.selling_price * sales.quantity) as total_sales
+        from products inner join sales on sales.pid = products.id group by products.name
+    """)
+    data = cur.fetchall()
+    return data
+
+
+def profit_per_product():
+    cur.execute("""
+        select products.name , sum((products.selling_price -products.buying_price) * sales.quantity) 
+        from sales as profit join products on sales.pid = products.id group by products.name;
+    """)
+    data = cur.fetchall()
+    return data
+
+
+def sales_per_day():
+    cur.execute("""
+        select sales.created_at as date, sum(product.selling_price * sales.quantity) as total_sales
+        from products inner join sales on sales.pid = products.id group by(date);
+    """)
+    data = cur.fetchall()
+    return data
+
+
+def profit_per_day():
+    cur.execute("""
+        select sales.created_at as date, sum((products.selling_price -products.buying_price) * sales.quantity) as profit
+        from products inner join sales on sales.pid = products.id group by(date);
+    """)
+    data = cur.fetchall()
+    return data
+
+
 
 
 

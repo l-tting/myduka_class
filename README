@@ -359,7 +359,7 @@ eggs - 100
 150 eggs
 
 400 -150 = 250 eggs
-Flash Messaging - used to send one time notifications froom the server to the client
+Flash Messaging - used to send one time notifications from the server to the client
 to notify a user about the result of an action
 e.g action - adding a product
     notification - Product Added succesfully
@@ -378,4 +378,36 @@ Message Categories
 
 Task - 1.Have the make sale and add stock forms inside a modal
       2.Add flashing for stock and sales route
+
+DASHBOARD
+In our dashboard -> simple data visualization
+1. Query for data you're interested in .
+2. Use some charts to display this data -> line charts -> bar charts 
+-> pie charts -> frequency polygon -> scatter plots -> heatmaps 
+
+-> Line chart -> data with a time component
+-> Bar Chart -> categorical data (months,days,product names)
+1. Sales -> sales per product - bar chart
+        -> sales per day -line
+2.Profit -> profit per product - bar
+          -> profit per day - line 
+
+select products.name ,sum(products.selling_price * sales.quantity) as total_sales from products inner join sales on sales.pid = products.id group by products.name;
+
+select products.name , sum((products.selling_price -products.buying_price) * sales.quantity) from sales join products 
+on sales.pid = products.id group by products.name;
+
+select sales.created_at as date, sum(product.selling_price * sales.quantity) as total_sales from products inner join sales
+on sales.pid = products.id group by(date);
+
+
+select sales.created_at as date, sum((products.selling_price -products.buying_price) * sales.quantity) as profit from products inner join sales on sales.pid = products.id group by(date);
+
+
+
+
+
+
+
+
 
