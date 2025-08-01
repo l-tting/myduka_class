@@ -44,9 +44,11 @@ def add_sales():
     pid = request.form["pid"]
     quantity = request.form["quantity"]
     new_sale = (pid,quantity)
-    check_stock = available_stock()
-    if check_stock < quantity:
-        print("Stock not available")
+    check_stock = available_stock(pid)
+    if check_stock < float(quantity):
+      
+        flash("Stock not enough","error")
+        return redirect(url_for('sales'))
     insert_sales(new_sale)
     return redirect(url_for('sales'))
     
@@ -63,7 +65,20 @@ def dashboard():
     profit_product = profit_per_product()
     sales_day = sales_per_day()
     profit_day = profit_per_day()
-    return render_template('dashboard.html')
+
+    #product data
+    product_names = [i[0] for i in sales_product]
+    sales_per_p = [i[1] for i in sales_product]
+    profit_per_p = [i[1] for i in  profit_product]
+
+    #day data
+    days = [i[0] for i in sales_day]
+    sales_day = [i[1] for i in sales_day]
+    profit_day = [i[1] for i in profit_day]
+    return render_template('dashboard.html',
+            product_names= product_names,sales_per_p=sales_per_p,profit_per_p=profit_per_p,
+            days = days,sales_day=sales_day,profit_day=profit_day       
+                    )
 
 
 app.run(debug=True)

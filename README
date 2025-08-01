@@ -406,8 +406,23 @@ select sales.created_at as date, sum((products.selling_price -products.buying_pr
 
 
 
+Sales per product  -product
+Profit per product  -product
+product -> x axis
+sales & profit -> y axis
 
 
+ 
+Sale per day - day
+Profit per day  - day
+day - x axis
+sales & profit - y axis
+
+
+eggs - sales - profit
+
+phones - 100 - 
+None vs 0
 
 
 

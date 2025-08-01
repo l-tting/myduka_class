@@ -41,12 +41,12 @@ def insert_sales(sales_details):
 new_sale = ("1",200)
 insert_sales(new_sale)
 
-
+   
 def available_stock(pid):
-    cur.execute("select sum(stock_quantity) from stock where pid = %s",(pid,))
+    cur.execute("select sum(stock_quantity) from stock where pid = %s",(pid,))  
     total_stock = cur.fetchone()[0] or 0
 
-    cur.execute("select sum(quantity) from sales where pid = %s",(pid,))
+    cur.execute("select sum(quantity) from sales where pid = %s",(pid,)) 
     total_sales = cur.fetchone()[0] or 0
     return total_stock - total_sales
 
@@ -63,8 +63,8 @@ def sales_per_product():
 
 def profit_per_product():
     cur.execute("""
-        select products.name , sum((products.selling_price -products.buying_price) * sales.quantity) 
-        from sales as profit join products on sales.pid = products.id group by products.name;
+        select products.name , sum((products.selling_price -products.buying_price) * sales.quantity)  as profit 
+        from sales join products on sales.pid = products.id group by products.name;
     """)
     data = cur.fetchall()
     return data
@@ -72,8 +72,8 @@ def profit_per_product():
 
 def sales_per_day():
     cur.execute("""
-        select sales.created_at as date, sum(product.selling_price * sales.quantity) as total_sales
-        from products inner join sales on sales.pid = products.id group by(date);
+        select sales.created_at as date, sum(products.selling_price * sales.quantity) as total_sales from 
+        products inner join sales on sales.pid = products.id group by(date);
     """)
     data = cur.fetchall()
     return data
@@ -87,6 +87,13 @@ def profit_per_day():
     data = cur.fetchall()
     return data
 
+
+sales_per_p = sales_per_product()
+print(sales_per_p)
+
+
+profit_per_p = profit_per_product()
+print(profit_per_p)
 
 
 
