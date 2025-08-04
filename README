@@ -425,4 +425,23 @@ phones - 100 -
 None vs 0
 
 
+Registering a user -> posting data ->posting user's data
+Posting Data Form CheckList
+1.Method -> GET,POST,PUT,DELETE -> 
+2.Action -> where do you want to send data
+3.Name -> key 
+4.Input Type -> 
+5.Button type submit 
 
+
+insert into users(full_name,email,phone_number,password)values()
+
+Take user input using a form
+Submit data to register route
+Extract that user data using request.form
+Check if that user exists -> double registration -use email to check
+If user exists -> flash user exists and redirect to login
+If user doesnt exist -> hash password and add user
+
+Hashing Passwords -> changing human redable password texts to formats that cant be deciphered easily
+1234 -> #hjrjiid9djby73u88eh3bv3bb

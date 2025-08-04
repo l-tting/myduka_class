@@ -72,7 +72,7 @@ def profit_per_product():
 
 def sales_per_day():
     cur.execute("""
-        select sales.created_at as date, sum(products.selling_price * sales.quantity) as total_sales from 
+        select date(sales.created_at) as date, sum(products.selling_price * sales.quantity) as total_sales from 
         products inner join sales on sales.pid = products.id group by(date);
     """)
     data = cur.fetchall()
@@ -81,19 +81,23 @@ def sales_per_day():
 
 def profit_per_day():
     cur.execute("""
-        select sales.created_at as date, sum((products.selling_price -products.buying_price) * sales.quantity) as profit
+        select date(sales.created_at) as date, sum((products.selling_price -products.buying_price) * sales.quantity) as profit
         from products inner join sales on sales.pid = products.id group by(date);
     """)
     data = cur.fetchall()
     return data
 
 
-sales_per_p = sales_per_product()
-print(sales_per_p)
+def insert_user(user_details):
+    cur.execute(f"insert into users(full_name,email,phone_number,password)values{user_details}")
+    conn.commit()
 
 
-profit_per_p = profit_per_product()
-print(profit_per_p)
+def check_user(email):
+    cur.execute(f"select * from users where users.email = {email}")
+    user = cur.fetchone()
+    return user
+
 
 
 
