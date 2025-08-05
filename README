@@ -456,3 +456,16 @@ unicode -> universal representation of characters to represent text from any lan
 1234 - $299dbbc878wenndxhjhxjjjkcxkkdk
 
 session -> a way to temporarily store user data across multiple requests on an application
+
+
+EXTRA STUFF
+1. Object Oriented Programming - classes and objects
+2. SQLAlchemy - ORMs
+3. Python Virtual environment
+4. Editing a product
+5. Context processor
+6. Flask login
+
+
+TRUNCATE TABLE table_name RESTART IDENTITY;
+TRUNCATE - DELETES AND LEAVES THE DB STRUCTURE
