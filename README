@@ -445,3 +445,14 @@ If user doesnt exist -> hash password and add user
 
 Hashing Passwords -> changing human redable password texts to formats that cant be deciphered easily
 1234 -> #hjrjiid9djby73u88eh3bv3bb
+-converting plaain text password into unreadable strings -security
+
+decode utf -8 process of converting bytes into text
+
+utf -> Unicode Transformation Format
+unicode -> universal representation of characters to represent text from any language
+
+
+1234 - $299dbbc878wenndxhjhxjjjkcxkkdk
+
+session -> a way to temporarily store user data across multiple requests on an application

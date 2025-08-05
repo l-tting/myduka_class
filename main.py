@@ -1,12 +1,13 @@
-from flask import Flask, render_template, request, redirect,url_for,flash
+from flask import Flask, render_template, request, redirect,url_for,flash,session
 from database import fetch_products, fetch_sales,insert_products,insert_sales,available_stock,sales_per_product,profit_per_product,sales_per_day,profit_per_day,insert_user,check_user
 from flask_bcrypt import Bcrypt
+from functools  import wraps
 
 
 #flask instance
 app = Flask(__name__)
 
-
+#bcrypt instance
 bcrypt = Bcrypt(app)
 
 app.secret_key = 'fjikmnej8dn3hdnd'
@@ -16,8 +17,17 @@ app.secret_key = 'fjikmnej8dn3hdnd'
 def home():
     return render_template('index.html')
 
+def login_required(f):
+    @wraps(f)
+    def protected(*args,**kwargs):
+        if 'email' not in session:
+            return redirect(url_for('login'))
+        return f(*args,**kwargs)
+    return protected
+
 
 @app.route('/products')
+@login_required
 def products():
     products = fetch_products()
     return render_template('products.html',products=products)
@@ -36,6 +46,7 @@ def add_products():
 
 
 @app.route('/sales')
+@login_required
 def sales():
     sales= fetch_sales()
     products = fetch_products()
@@ -56,12 +67,14 @@ def add_sales():
     
 
 @app.route('/stock')
+@login_required
 def stock():
     return render_template('stock.html')
 
 
 
 @app.route('/dashboard')
+@login_required
 def dashboard():
     sales_product = sales_per_product()
     profit_product = profit_per_product()
@@ -94,7 +107,8 @@ def register():
         existing_user = check_user(email)
         if not existing_user:
             hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-            insert_user(full_name,email,phone_number,hashed_password)
+            new_user = (full_name,email,phone_number,hashed_password)
+            insert_user(new_user)
             flash("user registered successfully","success")
             return redirect(url_for('login'))
         else:
@@ -104,8 +118,23 @@ def register():
 
 
 
-@app.route('/login')
+@app.route('/login',methods=["GET","POST"])
 def login():
+    if request.method =="POST":
+        email = request.form['email']
+        password = request.form["password"]
+
+        existing_user = check_user(email)
+        if not existing_user:
+            flash("User does not exist ,please register","danger")
+            return redirect(url_for("register"))
+        else:
+            if bcrypt.check_password_hash(existing_user[-1],password):
+                flash("Logged in","success")
+                session["email"] = email
+                return redirect(url_for('dashboard'))
+            else:
+                flash("Password incorrect,try again","danger")
     return render_template("login.html")
 
 

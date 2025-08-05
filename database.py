@@ -94,7 +94,7 @@ def insert_user(user_details):
 
 
 def check_user(email):
-    cur.execute(f"select * from users where users.email = {email}")
+    cur.execute("select * from users where users.email = %s",(email,))
     user = cur.fetchone()
     return user
 
